@@ -1,8 +1,8 @@
 # Slugup
 
-### [slugup.com](https://slugup.com)
-
 > A platform for finding gym friends!
+
+### [slugup.com](https://slugup.com)
 
 ## Usage
 
