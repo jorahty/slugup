@@ -34,6 +34,10 @@ export async function signInWithGoogle() {
   }
 }
 
+export function signInWithApple() {
+  alert('Not implemented yet!');
+}
+
 export function signOut() {
   supabase.auth.signOut();
 }

@@ -31,12 +31,17 @@ export default function ViewModel({ children }: { children: ReactNode }) {
     AuthRepo.signInWithGoogle();
   }
 
+  function signInWithApple() {
+    AuthRepo.signInWithApple();
+  }
+
   function signOut() {
     AuthRepo.signOut();
   }
 
   return (
-    <ViewModelContext.Provider value={{ session, signInWithGoogle, signOut }}>
+    <ViewModelContext.Provider
+      value={{ session, signInWithGoogle, signInWithApple, signOut }}>
       {children}
     </ViewModelContext.Provider>
   );
