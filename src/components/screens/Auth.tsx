@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  TextInput,
-} from 'react-native';
+import { KeyboardAvoidingView, ScrollView, TextInput } from 'react-native';
 
 import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
@@ -25,14 +20,13 @@ export default function Auth() {
     <ScrollView
       keyboardDismissMode="on-drag"
       contentContainerStyle={{
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
       }}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1, maxWidth: 250, gap: 15 }}>
+        behavior="padding"
+        style={{ width: '100%', maxWidth: 250, gap: 15 }}>
         <Button
           title="Continue with Google"
           onPress={signInWithGoogle}
