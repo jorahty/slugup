@@ -1,14 +1,16 @@
 import { TouchableOpacity, Text } from 'react-native';
 
 import { styles } from '../../theme/theme';
+import { ReactNode } from 'react';
 
 interface Props {
   title?: string;
   onPress?: () => void;
   variant?: 'outlined' | 'danger';
+  decorator?: ReactNode;
 }
 
-export default function Button({ title, onPress, variant }: Props) {
+export default function Button({ title, onPress, variant, decorator }: Props) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,6 +21,7 @@ export default function Button({ title, onPress, variant }: Props) {
             ? styles.buttonOutlined
             : styles.buttonDanger),
       ]}>
+      {decorator}
       <Text
         style={[
           styles.buttonText,

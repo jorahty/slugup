@@ -1,10 +1,18 @@
 import { useState } from 'react';
-import { KeyboardAvoidingView, ScrollView, TextInput } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  TextInput,
+  Image,
+} from 'react-native';
 
 import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
 import Divider from '../common/Divider';
+
+const GoogleLogo = require('../../../assets/google-logo.png');
+const AppleLogo = require('../../../assets/apple-logo.png');
 
 export default function Auth() {
   const {
@@ -31,11 +39,17 @@ export default function Auth() {
           title="Continue with Google"
           onPress={signInWithGoogle}
           variant="outlined"
+          decorator={
+            <Image source={GoogleLogo} style={{ width: 23.5, height: 24 }} />
+          }
         />
         <Button
           title="Continue with Apple"
           onPress={signInWithApple}
           variant="outlined"
+          decorator={
+            <Image source={AppleLogo} style={{ width: 19.5, height: 24 }} />
+          }
         />
         <Divider />
         <TextInput
