@@ -8,7 +8,6 @@ import {
 import { Session } from '@supabase/supabase-js';
 
 import { supabase } from '../lib/supabase';
-import * as AuthRepo from '../repo/auth';
 
 const ViewModelContext = createContext<any>({});
 
@@ -27,21 +26,8 @@ export default function ViewModel({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  function signInWithGoogle() {
-    AuthRepo.signInWithGoogle();
-  }
-
-  function signInWithApple() {
-    AuthRepo.signInWithApple();
-  }
-
-  function signOut() {
-    AuthRepo.signOut();
-  }
-
   return (
-    <ViewModelContext.Provider
-      value={{ session, signInWithGoogle, signInWithApple, signOut }}>
+    <ViewModelContext.Provider value={{ session }}>
       {children}
     </ViewModelContext.Provider>
   );

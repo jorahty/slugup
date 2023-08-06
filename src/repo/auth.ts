@@ -3,6 +3,11 @@ import * as WebBrowser from 'expo-web-browser';
 
 import { supabase } from '../lib/supabase';
 
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
 export async function signInWithGoogle() {
   if (Platform.OS === 'web') {
     supabase.auth.signInWithOAuth({ provider: 'google' });
@@ -36,6 +41,28 @@ export async function signInWithGoogle() {
 
 export function signInWithApple() {
   alert('Not implemented yet!');
+}
+
+export async function signInWithEmail({ email, password }: Credentials) {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+
+  if (error) alert(error.message);
+}
+
+export async function signUpWithEmail({ email, password }: Credentials) {
+  const { error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert(`A confirmation link was sent to ${email}`);
+  }
 }
 
 export function signOut() {

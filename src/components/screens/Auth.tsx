@@ -7,20 +7,19 @@ import {
 } from 'react-native';
 
 import { colors, styles } from '../../theme/theme';
-import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
 import Divider from '../common/Divider';
+import {
+  signInWithGoogle,
+  signInWithApple,
+  signInWithEmail,
+  signUpWithEmail,
+} from '../../repo/auth';
 
 const GoogleLogo = require('../../../assets/google-logo.png');
 const AppleLogo = require('../../../assets/apple-logo.png');
 
 export default function Auth() {
-  const {
-    signInWithGoogle,
-    signInWithApple,
-    signInWithEmail,
-    signUpWithEmail,
-  } = useViewModel();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -68,8 +67,14 @@ export default function Auth() {
           style={styles.textInput}
           placeholderTextColor={colors.grey500}
         />
-        <Button title="Sign in" onPress={signInWithEmail} />
-        <Button title="Sign up" onPress={signUpWithEmail} />
+        <Button
+          title="Sign in"
+          onPress={() => signInWithEmail({ email, password })}
+        />
+        <Button
+          title="Sign up"
+          onPress={() => signUpWithEmail({ email, password })}
+        />
       </KeyboardAvoidingView>
     </ScrollView>
   );

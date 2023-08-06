@@ -1,15 +1,12 @@
 import { Text, View } from 'react-native';
 
-import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
+import { signOut } from '../../repo/auth';
 
 export default function Home() {
-  const { session, signOut } = useViewModel();
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
-      <Text>session: {String(session)}</Text>
       <Button title="Sign out" onPress={signOut} />
     </View>
   );
