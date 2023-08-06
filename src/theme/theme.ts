@@ -26,4 +26,11 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.white,
   },
+  textInput: {
+    borderWidth: 2,
+    padding: 15,
+    borderRadius: 15,
+    borderColor: colors.grey400,
+    backgroundColor: colors.white,
+  },
 });

@@ -1,17 +1,60 @@
-import { Text, View } from 'react-native';
+import { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 
+import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
+import Divider from '../common/Divider';
 
 export default function Auth() {
-  const { session, signInWithGoogle, signInWithApple } = useViewModel();
+  const {
+    signInWithGoogle,
+    signInWithApple,
+    signInWithEmail,
+    signUpWithEmail,
+  } = useViewModel();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Auth Screen</Text>
-      <Text>session: {String(session)}</Text>
-      <Button title="Continue with Google" onPress={signInWithGoogle} />
-      <Button title="Continue with Apple" onPress={signInWithApple} />
-    </View>
+    <ScrollView
+      keyboardDismissMode="on-drag"
+      contentContainerStyle={{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+      }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1, maxWidth: 250, gap: 15 }}>
+        <Button title="Continue with Google" onPress={signInWithGoogle} />
+        <Button title="Continue with Apple" onPress={signInWithApple} />
+        <Divider />
+        <TextInput
+          autoCapitalize="none"
+          placeholder="email@address.com"
+          value={email}
+          onChangeText={setEmail}
+          style={styles.textInput}
+          placeholderTextColor={colors.grey500}
+        />
+        <TextInput
+          placeholder="password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+          style={styles.textInput}
+          placeholderTextColor={colors.grey500}
+        />
+        <Button title="Sign in" onPress={signInWithEmail} />
+        <Button title="Sign up" onPress={signUpWithEmail} />
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
