@@ -46,6 +46,7 @@ export default function ViewModel({ children }: { children: ReactNode }) {
     const result = await WebBrowser.openAuthSessionAsync(
       url!,
       'slugup://google-auth?'
+      // { preferEphemeralSession: true }
     );
 
     if (result.type === 'success') {
