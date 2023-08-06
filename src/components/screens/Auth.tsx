@@ -33,8 +33,16 @@ export default function Auth() {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1, maxWidth: 250, gap: 15 }}>
-        <Button title="Continue with Google" onPress={signInWithGoogle} />
-        <Button title="Continue with Apple" onPress={signInWithApple} />
+        <Button
+          title="Continue with Google"
+          onPress={signInWithGoogle}
+          variant="outlined"
+        />
+        <Button
+          title="Continue with Apple"
+          onPress={signInWithApple}
+          variant="outlined"
+        />
         <Divider />
         <TextInput
           autoCapitalize="none"

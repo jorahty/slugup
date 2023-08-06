@@ -8,6 +8,7 @@ export const colors = {
   grey300: '#ccc',
   grey400: '#aaa',
   grey500: '#777',
+  danger: '#e45',
 };
 
 export const styles = StyleSheet.create({
@@ -26,11 +27,25 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.white,
   },
+  buttonDanger: {
+    backgroundColor: colors.danger,
+    borderColor: colors.danger,
+  },
+  buttonOutlined: {
+    backgroundColor: 'transparent',
+    borderColor: colors.grey400,
+  },
+  buttonOutlinedText: {
+    color: colors.grey500,
+  },
   textInput: {
     borderWidth: 2,
     padding: 15,
     borderRadius: 15,
     borderColor: colors.grey400,
     backgroundColor: colors.white,
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });
