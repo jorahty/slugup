@@ -5,18 +5,15 @@ import { styles } from '../../theme/theme';
 interface Props {
   title?: string;
   onPress?: () => void;
-  disabled?: boolean;
   variant?: 'outlined' | 'danger';
 }
 
-export default function Button({ title, onPress, disabled, variant }: Props) {
+export default function Button({ title, onPress, variant }: Props) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      disabled={disabled}
       style={[
         styles.button,
-        disabled && styles.disabled,
         variant &&
           (variant === 'outlined'
             ? styles.buttonOutlined

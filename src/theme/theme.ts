@@ -45,7 +45,4 @@ export const styles = StyleSheet.create({
     borderColor: colors.grey400,
     backgroundColor: colors.white,
   },
-  disabled: {
-    opacity: 0.5,
-  },
 });
