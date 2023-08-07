@@ -3,7 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 
 import { colors } from './src/theme/theme';
 import NavStack from './src/components/NavStack';
-import ViewModel from './src/model/ViewModel';
 
 export default function App() {
   return (
@@ -15,9 +14,7 @@ export default function App() {
         backgroundColor: colors.grey200,
       }}>
       <View style={{ flex: 1, maxWidth: 900, backgroundColor: colors.white }}>
-        <ViewModel>
-          <NavStack />
-        </ViewModel>
+        <NavStack />
       </View>
       <StatusBar style="dark" />
     </View>
