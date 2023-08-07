@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import { colors } from './src/theme/theme';
+import ViewModel from './src/model/ViewModel';
 import NavStack from './src/components/NavStack';
 
 export default function App() {
@@ -14,7 +15,9 @@ export default function App() {
         backgroundColor: colors.grey200,
       }}>
       <View style={{ flex: 1, maxWidth: 900, backgroundColor: colors.white }}>
-        <NavStack />
+        <ViewModel>
+          <NavStack />
+        </ViewModel>
       </View>
       <StatusBar style="dark" />
     </View>
