@@ -10,7 +10,7 @@ import { Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 
 export default function PostMenu() {
-  const { selectedPost, setSelectedPost } = useViewModel();
+  const { selectedPost, setSelectedPost, setSelectedUser } = useViewModel();
   const { navigate } = useNavigation<any>();
   const [session, setSession] = useState<null | Session>(null);
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function PostMenu() {
   };
 
   const messageUser = () => {
-    // set selected user
+    setSelectedUser(selectedPost.profiles);
     navigate('Chat');
     close();
   };

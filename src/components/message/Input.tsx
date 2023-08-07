@@ -7,20 +7,27 @@ import {
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import { supabase } from '../../lib/supabase';
-import { colors, styles } from '../../theme/theme';
-import Button from '../common/Button';
 import { FontAwesome } from '@expo/vector-icons';
 
+import { supabase } from '../../lib/supabase';
+import { useViewModel } from '../../model/ViewModel';
+import { colors, styles } from '../../theme/theme';
+import Button from '../common/Button';
+
 export default function MessageInput() {
+  const { selectedUser } = useViewModel();
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function sendMessage() {
     setLoading(true);
-    // const { error } = await supabase.from('posts').insert([{ content }]);
-    // if (error) alert(error.message);
+    const { error } = await supabase.from('messages').insert([
+      {
+        content: content,
+        receiver: selectedUser.id,
+      },
+    ]);
+    if (error) alert(error.message);
     Keyboard.dismiss();
     setContent('');
     setLoading(false);
