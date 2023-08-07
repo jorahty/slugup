@@ -4,6 +4,7 @@ import { FlatList, Text } from 'react-native';
 import { supabase } from '../../lib/supabase';
 import { Message, useViewModel } from '../../model/ViewModel';
 import Loading from '../common/Loading';
+import MessageCard from './Card';
 
 export default function MessageList() {
   const { selectedUser } = useViewModel();
@@ -56,7 +57,8 @@ export default function MessageList() {
       data={messages}
       style={{ height: 0 }}
       keyboardDismissMode="on-drag"
-      renderItem={({ item }) => <Text>{JSON.stringify(item, null, 2)}</Text>}
+      contentContainerStyle={{ padding: 20 }}
+      renderItem={({ item }) => <MessageCard message={item} />}
     />
   );
 }

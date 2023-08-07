@@ -60,4 +60,19 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
   },
+  message: {
+    borderRadius: 15,
+    backgroundColor: colors.grey300,
+    padding: 20,
+    marginVertical: 5,
+  },
+  messageText: {
+    fontWeight: '600',
+  },
+  messageSent: {
+    backgroundColor: colors.blue,
+  },
+  messageSentText: {
+    color: colors.white,
+  },
 });
