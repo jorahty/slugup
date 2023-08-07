@@ -34,7 +34,7 @@ export default function PostList() {
       `
         )
         .order('date', { ascending: false })
-        .range(0, 50);
+        .range(0, 30);
       if (error) alert(error.message);
       else setPosts(data as any);
       if (loading) setLoading(false);
