@@ -19,7 +19,8 @@ export default function PostInput() {
 
   async function sendPost() {
     setLoading(true);
-    await supabase.from('posts').insert([{ content }]);
+    const { error } = await supabase.from('posts').insert([{ content }]);
+    if (error) alert(error.message);
     Keyboard.dismiss();
     setContent('');
     setLoading(false);
