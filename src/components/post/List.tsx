@@ -1,21 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
+
 import { supabase } from '../../lib/supabase';
+import { Post } from '../../model/ViewModel';
 import Loading from '../common/Loading';
 import PostCard from './Card';
-
-interface User {
-  id: string;
-  full_name: string;
-  avatar_url: string;
-}
-
-export interface Post {
-  id: string;
-  content: string;
-  date: string;
-  profiles: User;
-}
 
 export default function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Session } from '@supabase/supabase-js';
 
 import { supabase } from '../lib/supabase';
+import ViewModel from '../model/ViewModel';
 import Home, { HomeHeaderLeft } from './screens/Home';
 import Auth from './screens/Auth';
 import NameForm from './screens/NameForm';
@@ -48,18 +49,20 @@ export default function NavStack() {
     return <NameForm id={session.user.id} setHasName={setHasName} />;
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            headerTitleAlign: 'center',
-            headerLeft: HomeHeaderLeft,
-          }}
-        />
-        <Stack.Screen name="Chat" component={Chat} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ViewModel>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerTitleAlign: 'center',
+              headerLeft: HomeHeaderLeft,
+            }}
+          />
+          <Stack.Screen name="Chat" component={Chat} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ViewModel>
   );
 }

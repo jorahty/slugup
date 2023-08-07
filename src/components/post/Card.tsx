@@ -1,14 +1,17 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
+import { Post, useViewModel } from '../../model/ViewModel';
 import { colors, styles } from '../../theme/theme';
-import { Post } from './List';
 import formatISOString from '../../util/formatISOString';
 
 const Avatar = require('../../../assets/avatar.png');
 
 export default function PostCard({ post }: { post: Post }) {
+  const { setSelectedPost } = useViewModel();
+
   return (
     <TouchableOpacity
+      onPress={() => setSelectedPost(post)}
       style={{
         flexDirection: 'row',
         padding: 20,
