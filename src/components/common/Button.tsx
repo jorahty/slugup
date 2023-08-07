@@ -1,27 +1,29 @@
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 
-import { styles } from '../../theme/theme';
+import { colors, styles } from '../../theme/theme';
 import { ReactNode } from 'react';
 
 interface Props {
   title?: string;
+  decorator?: ReactNode;
   onPress?: () => void;
   disabled?: boolean;
+  loading?: boolean;
   variant?: 'outlined' | 'danger';
-  decorator?: ReactNode;
 }
 
 export default function Button({
   title,
+  decorator,
   onPress,
   disabled,
+  loading,
   variant,
-  decorator,
 }: Props) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      disabled={disabled}
+      disabled={disabled || loading}
       style={[
         styles.button,
         variant &&
@@ -30,15 +32,23 @@ export default function Button({
             : styles.buttonDanger),
         disabled && styles.disabled,
       ]}>
-      {decorator}
-      {title && (
-        <Text
-          style={[
-            styles.buttonText,
-            variant === 'outlined' && styles.buttonOutlinedText,
-          ]}>
-          {title}
-        </Text>
+      {loading ? (
+        <ActivityIndicator
+          color={variant === 'outlined' ? colors.grey500 : colors.white}
+        />
+      ) : (
+        <>
+          {decorator}
+          {title && (
+            <Text
+              style={[
+                styles.buttonText,
+                variant === 'outlined' && styles.buttonOutlinedText,
+              ]}>
+              {title}
+            </Text>
+          )}
+        </>
       )}
     </TouchableOpacity>
   );

@@ -15,11 +15,14 @@ import { FontAwesome } from '@expo/vector-icons';
 
 export default function PostInput() {
   const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function sendPost() {
+    setLoading(true);
     await supabase.from('posts').insert([{ content }]);
     Keyboard.dismiss();
     setContent('');
+    setLoading(false);
   }
 
   const insets = useSafeAreaInsets();
@@ -48,6 +51,7 @@ export default function PostInput() {
           <Button
             onPress={sendPost}
             disabled={content.length < 1}
+            loading={loading}
             decorator={<FontAwesome name="send" style={styles.buttonIcon} />}
           />
         </View>
