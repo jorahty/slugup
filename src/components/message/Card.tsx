@@ -8,7 +8,9 @@ interface Props {
 }
 
 export default function MessageCard({ message }: Props) {
-  const wasSent = message.sender === 'loginResponse.id';
+  const { session } = useViewModel();
+
+  const wasSent = message.sender === session?.user.id;
 
   return (
     <View style={{ alignItems: wasSent ? 'flex-end' : 'flex-start' }}>
