@@ -4,12 +4,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { signOut } from '../../repo/auth';
 import PostList from '../post/List';
 import PostInput from '../post/Input';
+import PostMenu from '../post/Menu';
 
 export default function Home() {
   return (
     <View style={{ flex: 1 }}>
       <PostList />
       <PostInput />
+      <PostMenu />
     </View>
   );
 }
