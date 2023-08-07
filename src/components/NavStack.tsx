@@ -20,22 +20,25 @@ export default function NavStack() {
   const [hasName, setHasName] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        setSession(session);
+        setLoading(false);
 
-      if (session?.user) {
-        supabase
-          .from('profiles')
-          .select('full_name')
-          .eq('id', session.user.id)
-          .then(({ data }) => {
-            if (data![0].full_name === null) {
-              setHasName(false);
-            }
-          });
-      }
-    });
+        if (session?.user) {
+          supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('id', session.user.id)
+            .then(({ data }) => {
+              if (data![0].full_name === null) {
+                setHasName(false);
+              }
+            });
+        }
+      })
+      .catch((error) => alert(error.message));
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
