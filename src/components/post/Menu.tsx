@@ -6,13 +6,12 @@ import { supabase } from '../../lib/supabase';
 import { useViewModel } from '../../model/ViewModel';
 import { colors, styles } from '../../theme/theme';
 import Button from '../common/Button';
-import { Session } from '@supabase/supabase-js';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function PostMenu() {
-  const { selectedPost, setSelectedPost, setSelectedUser } = useViewModel();
+  const { session, selectedPost, setSelectedPost, setSelectedUser } =
+    useViewModel();
   const { navigate } = useNavigation<any>();
-  const [session, setSession] = useState<null | Session>(null);
   const [loading, setLoading] = useState(false);
 
   const close = () => {
@@ -41,12 +40,6 @@ export default function PostMenu() {
     navigate('Profile');
     close();
   };
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-  }, []);
 
   if (!selectedPost) return <></>;
 
