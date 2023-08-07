@@ -5,11 +5,12 @@ import { Session } from '@supabase/supabase-js';
 
 import { supabase } from '../lib/supabase';
 import ViewModel from '../model/ViewModel';
-import Home, { HomeHeaderLeft } from './screens/Home';
+import Loading from './common/Loading';
 import Auth from './screens/Auth';
 import NameForm from './screens/NameForm';
+import Home, { HomeHeaderLeft } from './screens/Home';
 import Chat from './screens/Chat';
-import Loading from './common/Loading';
+import Profile from './screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +62,7 @@ export default function NavStack() {
             }}
           />
           <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </ViewModel>
