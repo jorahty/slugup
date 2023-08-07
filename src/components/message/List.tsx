@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { FlatList, Text } from 'react-native';
 
 import { supabase } from '../../lib/supabase';
-import { Message } from '../../model/ViewModel';
+import { Message, useViewModel } from '../../model/ViewModel';
 import Loading from '../common/Loading';
 
 export default function MessageList() {
+  const { selectedUser } = useViewModel();
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,6 +15,7 @@ export default function MessageList() {
       let { data, error } = await supabase
         .from('messages')
         .select()
+        .or(`sender.eq.${selectedUser.id},receiver.eq.${selectedUser.id}`)
         .order('date', { ascending: false })
         .range(0, 30);
       if (error) alert(error.message);
