@@ -1,19 +1,13 @@
-import { useState } from 'react';
-import { FlatList, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { signOut } from '../../repo/auth';
+import PostingList from '../posting/List';
 
 export default function Home() {
-  const [postings, setPostings] = useState([]);
-
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
-        style={{ height: 0 }}
-        data={postings}
-        renderItem={({ item }) => <Text>item</Text>}
-      />
+      <PostingList />
     </View>
   );
 }
