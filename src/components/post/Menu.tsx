@@ -18,8 +18,8 @@ export default function PostMenu() {
     setSelectedPost(null);
   };
 
-  const removePost = () => {
-    // remove
+  const removePost = async () => {
+    await supabase.from('posts').delete().eq('id', selectedPost.id);
     close();
   };
 
