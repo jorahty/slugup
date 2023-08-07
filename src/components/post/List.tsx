@@ -6,8 +6,9 @@ export default function PostList() {
 
   return (
     <FlatList
-      style={{ height: 0 }}
       data={posts}
+      style={{ height: 0 }}
+      keyboardDismissMode="on-drag"
       renderItem={({ item }) => <Text>item</Text>}
     />
   );

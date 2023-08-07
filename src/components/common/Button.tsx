@@ -22,13 +22,15 @@ export default function Button({ title, onPress, variant, decorator }: Props) {
             : styles.buttonDanger),
       ]}>
       {decorator}
-      <Text
-        style={[
-          styles.buttonText,
-          variant === 'outlined' && styles.buttonOutlinedText,
-        ]}>
-        {title}
-      </Text>
+      {title && (
+        <Text
+          style={[
+            styles.buttonText,
+            variant === 'outlined' && styles.buttonOutlinedText,
+          ]}>
+          {title}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 }

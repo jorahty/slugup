@@ -38,6 +38,10 @@ export const styles = StyleSheet.create({
   buttonOutlinedText: {
     color: colors.grey500,
   },
+  buttonIcon: {
+    color: colors.white,
+    fontSize: 18,
+  },
   textInput: {
     borderWidth: 2,
     padding: 15,
