@@ -15,13 +15,16 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.blue,
     borderRadius: 15,
-    padding: 15,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
     borderWidth: 2,
     borderColor: colors.blue,
+    minHeight: 50,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    minWidth: 55,
   },
   buttonText: {
     fontWeight: '700',

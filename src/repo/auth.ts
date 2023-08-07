@@ -39,7 +39,7 @@ export async function signInWithGoogle() {
   }
 }
 
-export function signInWithApple() {
+export async function signInWithApple() {
   alert('Not implemented yet!');
 }
 

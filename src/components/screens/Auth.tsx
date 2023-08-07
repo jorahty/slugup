@@ -9,12 +9,7 @@ import {
 import { colors, styles } from '../../theme/theme';
 import Button from '../common/Button';
 import Divider from '../common/Divider';
-import {
-  signInWithGoogle,
-  signInWithApple,
-  signInWithEmail,
-  signUpWithEmail,
-} from '../../repo/auth';
+import * as AuthRepo from '../../repo/auth';
 
 const GoogleLogo = require('../../../assets/google-logo.png');
 const AppleLogo = require('../../../assets/apple-logo.png');
@@ -22,6 +17,31 @@ const AppleLogo = require('../../../assets/apple-logo.png');
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function signInWithGoogle() {
+    setLoading(true);
+    await AuthRepo.signInWithGoogle();
+    setLoading(false);
+  }
+
+  async function signInWithApple() {
+    setLoading(true);
+    await AuthRepo.signInWithApple();
+    setLoading(false);
+  }
+
+  async function signInWithEmail() {
+    setLoading(true);
+    await AuthRepo.signInWithEmail({ email, password });
+    setLoading(false);
+  }
+
+  async function signUpWithEmail() {
+    setLoading(true);
+    await AuthRepo.signUpWithEmail({ email, password });
+    setLoading(false);
+  }
 
   return (
     <ScrollView
@@ -37,6 +57,7 @@ export default function Auth() {
         <Button
           title="Continue with Google"
           onPress={signInWithGoogle}
+          loading={loading}
           variant="outlined"
           decorator={
             <Image source={GoogleLogo} style={{ width: 23.5, height: 24 }} />
@@ -45,6 +66,7 @@ export default function Auth() {
         <Button
           title="Continue with Apple"
           onPress={signInWithApple}
+          loading={loading}
           variant="outlined"
           decorator={
             <Image source={AppleLogo} style={{ width: 19.5, height: 24 }} />
@@ -67,14 +89,8 @@ export default function Auth() {
           style={styles.textInput}
           placeholderTextColor={colors.grey500}
         />
-        <Button
-          title="Sign in"
-          onPress={() => signInWithEmail({ email, password })}
-        />
-        <Button
-          title="Sign up"
-          onPress={() => signUpWithEmail({ email, password })}
-        />
+        <Button title="Sign in" onPress={signInWithEmail} loading={loading} />
+        <Button title="Sign up" onPress={signUpWithEmail} loading={loading} />
       </KeyboardAvoidingView>
     </ScrollView>
   );
