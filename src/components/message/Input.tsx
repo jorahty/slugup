@@ -28,7 +28,6 @@ export default function MessageInput() {
       },
     ]);
     if (error) alert(error.message);
-    Keyboard.dismiss();
     setContent('');
     setLoading(false);
   }
