@@ -1,7 +1,14 @@
 import { useState } from 'react';
-import { KeyboardAvoidingView, Platform, TextInput, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { supabase } from '../../lib/supabase';
 import { colors, styles } from '../../theme/theme';
 import Button from '../common/Button';
 import { FontAwesome } from '@expo/vector-icons';
@@ -9,8 +16,11 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function PostInput() {
   const [content, setContent] = useState('');
 
-  function sendPosting() {
-    console.log('yo');
+  async function sendPost() {
+    if (content.length < 1) return;
+    await supabase.from('posts').insert([{ content }]);
+    Keyboard.dismiss();
+    setContent('');
   }
 
   const insets = useSafeAreaInsets();
@@ -34,12 +44,11 @@ export default function PostInput() {
             placeholder="New Posting"
             value={content}
             onChangeText={setContent}
-            onSubmitEditing={content ? sendPosting : undefined}
+            onSubmitEditing={sendPost}
           />
           <Button
             decorator={<FontAwesome name="send" style={styles.buttonIcon} />}
-            onPress={sendPosting}
-            // disabled={content.length < 1}
+            onPress={sendPost}
           />
         </View>
       </KeyboardAvoidingView>
