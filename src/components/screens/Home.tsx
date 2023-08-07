@@ -1,13 +1,29 @@
-import { Text, View } from 'react-native';
+import { useState } from 'react';
+import { FlatList, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
-import Button from '../common/Button';
 import { signOut } from '../../repo/auth';
 
 export default function Home() {
+  const [postings, setPostings] = useState([]);
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="Sign out" onPress={signOut} />
+    <View style={{ flex: 1 }}>
+      <FlatList
+        style={{ height: 0 }}
+        data={postings}
+        renderItem={({ item }) => <Text>item</Text>}
+      />
     </View>
   );
 }
+
+export const HomeHeaderLeft = () => {
+  return (
+    <TouchableOpacity
+      onPress={signOut}
+      style={Platform.OS === 'web' && { paddingLeft: 20 }}>
+      <MaterialIcons name="logout" size={24} />
+    </TouchableOpacity>
+  );
+};
