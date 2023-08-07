@@ -17,7 +17,6 @@ export default function PostInput() {
   const [content, setContent] = useState('');
 
   async function sendPost() {
-    if (content.length < 1) return;
     await supabase.from('posts').insert([{ content }]);
     Keyboard.dismiss();
     setContent('');
@@ -44,11 +43,12 @@ export default function PostInput() {
             placeholder="New Posting"
             value={content}
             onChangeText={setContent}
-            onSubmitEditing={sendPost}
+            onSubmitEditing={content ? sendPost : undefined}
           />
           <Button
-            decorator={<FontAwesome name="send" style={styles.buttonIcon} />}
             onPress={sendPost}
+            disabled={content.length < 1}
+            decorator={<FontAwesome name="send" style={styles.buttonIcon} />}
           />
         </View>
       </KeyboardAvoidingView>

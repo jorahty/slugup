@@ -6,20 +6,29 @@ import { ReactNode } from 'react';
 interface Props {
   title?: string;
   onPress?: () => void;
+  disabled?: boolean;
   variant?: 'outlined' | 'danger';
   decorator?: ReactNode;
 }
 
-export default function Button({ title, onPress, variant, decorator }: Props) {
+export default function Button({
+  title,
+  onPress,
+  disabled,
+  variant,
+  decorator,
+}: Props) {
   return (
     <TouchableOpacity
       onPress={onPress}
+      disabled={disabled}
       style={[
         styles.button,
         variant &&
           (variant === 'outlined'
             ? styles.buttonOutlined
             : styles.buttonDanger),
+        disabled && styles.disabled,
       ]}>
       {decorator}
       {title && (
