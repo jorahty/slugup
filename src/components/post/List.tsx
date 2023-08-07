@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import { supabase } from '../../lib/supabase';
+import Loading from '../common/Loading';
 
 interface Post {
   id: string;
@@ -44,12 +45,7 @@ export default function PostList() {
     };
   }, []);
 
-  if (loading)
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  if (loading) return <Loading />;
 
   return (
     <FlatList

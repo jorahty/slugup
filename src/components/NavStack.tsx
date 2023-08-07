@@ -7,7 +7,7 @@ import { supabase } from '../lib/supabase';
 import Home, { HomeHeaderLeft } from './screens/Home';
 import Auth from './screens/Auth';
 import Chat from './screens/Chat';
-import { ActivityIndicator, View } from 'react-native';
+import Loading from './common/Loading';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,12 +26,7 @@ export default function NavStack() {
     });
   }, []);
 
-  if (loading)
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  if (loading) return <Loading />;
 
   if (!session) return <Auth />;
 
