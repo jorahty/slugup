@@ -55,4 +55,8 @@ export const styles = StyleSheet.create({
   disabled: {
     opacity: 0.5,
   },
+  headline: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
 });

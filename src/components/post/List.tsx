@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { supabase } from '../../lib/supabase';
 import Loading from '../common/Loading';
+import PostCard from './Card';
 
-export interface User {
+interface User {
   id: string;
   full_name: string;
   avatar_url: string;
 }
 
-interface Post {
+export interface Post {
   id: string;
   content: string;
   date: string;
@@ -22,17 +23,23 @@ export default function PostList() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      let { data, error } = await supabase.from('posts').select(`
+      let { data, error } = await supabase
+        .from('posts')
+        .select(
+          `
         id,
         content,
         date,
         profiles ( id, full_name, avatar_url )
-      `);
+      `
+        )
+        .order('date', { ascending: false })
+        .range(0, 50);
       if (error) alert(error.message);
       else setPosts(data as any);
-      setLoading(false);
+      if (loading) setLoading(false);
     };
-    fetchPosts();
+    const intervalId = setInterval(() => fetchPosts(), 5000);
 
     const postListener = supabase
       .channel('public:posts')
@@ -54,7 +61,11 @@ export default function PostList() {
               .eq('id', payload.new.id);
             if (error) alert(error.message);
             setPosts((prevPosts) => {
-              return [data![0] as any, ...prevPosts];
+              if (prevPosts.some((post) => post.id === payload.new.id)) {
+                return prevPosts;
+              } else {
+                return [data![0] as any, ...prevPosts];
+              }
             });
           } else {
             setPosts((prevPosts) => {
@@ -66,6 +77,7 @@ export default function PostList() {
       .subscribe();
 
     return () => {
+      clearInterval(intervalId);
       supabase.removeChannel(postListener);
     };
   }, []);
@@ -77,7 +89,7 @@ export default function PostList() {
       data={posts}
       style={{ height: 0 }}
       keyboardDismissMode="on-drag"
-      renderItem={({ item }) => <Text>{JSON.stringify(item, null, 2)}</Text>}
+      renderItem={({ item }) => <PostCard post={item} />}
     />
   );
 }
