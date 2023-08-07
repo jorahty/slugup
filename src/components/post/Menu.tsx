@@ -68,7 +68,7 @@ export default function PostMenu() {
             <View style={{ padding: 20, gap: 20 }}>
               {session?.user.id === selectedPost.profiles.id ? (
                 <Button
-                  title="Remove Posting"
+                  title="Remove Post"
                   onPress={removePost}
                   decorator={
                     <FontAwesome name="trash" style={styles.buttonIcon} />

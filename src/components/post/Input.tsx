@@ -43,7 +43,7 @@ export default function PostInput() {
           }}>
           <TextInput
             style={[styles.textInput, { flex: 1 }]}
-            placeholder="New Posting"
+            placeholder="New Post"
             value={content}
             onChangeText={setContent}
             onSubmitEditing={content ? sendPost : undefined}
