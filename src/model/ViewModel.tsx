@@ -13,6 +13,14 @@ export interface Post {
   profiles: User;
 }
 
+export interface Message {
+  id: string;
+  sender: string;
+  receiver: string;
+  content: string;
+  date: string;
+}
+
 const ViewModelContext = createContext<any>({});
 
 export const useViewModel = () => useContext(ViewModelContext);
