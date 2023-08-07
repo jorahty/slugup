@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Text } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { supabase } from '../../lib/supabase';
 
 interface Post {
@@ -11,11 +11,14 @@ interface Post {
 
 export default function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      let { data } = await supabase.from('posts').select();
-      setPosts(data!);
+      let { data, error } = await supabase.from('posts').select();
+      if (error) alert(error.message);
+      else setPosts(data!);
+      setLoading(false);
     };
     fetchPosts();
 
@@ -40,6 +43,13 @@ export default function PostList() {
       supabase.removeChannel(postListener);
     };
   }, []);
+
+  if (loading)
+    return (
+      <View style={{ flex: 1, justifyContent: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
 
   return (
     <FlatList
