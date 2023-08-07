@@ -36,15 +36,13 @@ export default function PostMenu() {
   };
 
   const viewUserProfile = () => {
-    // set selected user
+    setSelectedUser(selectedPost.profiles);
     navigate('Profile');
     close();
   };
 
-  if (!selectedPost) return <></>;
-
   return (
-    <Modal transparent>
+    <Modal visible={selectedPost !== null} transparent>
       <Pressable
         onPress={close}
         style={{
@@ -66,7 +64,7 @@ export default function PostMenu() {
               borderColor: colors.grey300,
             }}>
             <View style={{ padding: 20, gap: 20 }}>
-              {session?.user.id === selectedPost.profiles.id ? (
+              {session?.user.id === selectedPost?.profiles.id ? (
                 <Button
                   loading={loading}
                   title="Remove Post"
