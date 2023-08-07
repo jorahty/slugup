@@ -2,12 +2,12 @@ import { Platform, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { signOut } from '../../repo/auth';
-import PostingList from '../posting/List';
+import PostList from '../post/List';
 
 export default function Home() {
   return (
     <View style={{ flex: 1 }}>
-      <PostingList />
+      <PostList />
     </View>
   );
 }
