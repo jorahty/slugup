@@ -11,16 +11,23 @@ import { useEffect, useState } from 'react';
 
 export default function PostMenu() {
   const { selectedPost, setSelectedPost } = useViewModel();
-  const [session, setSession] = useState<null | Session>(null);
   const { navigate } = useNavigation<any>();
+  const [session, setSession] = useState<null | Session>(null);
+  const [loading, setLoading] = useState(false);
 
   const close = () => {
     setSelectedPost(null);
   };
 
   const removePost = async () => {
-    await supabase.from('posts').delete().eq('id', selectedPost.id);
+    setLoading(true);
+    const { error } = await supabase
+      .from('posts')
+      .delete()
+      .eq('id', selectedPost.id);
+    if (error) alert(error);
     close();
+    setLoading(false);
   };
 
   const messageUser = () => {
@@ -68,6 +75,7 @@ export default function PostMenu() {
             <View style={{ padding: 20, gap: 20 }}>
               {session?.user.id === selectedPost.profiles.id ? (
                 <Button
+                  loading={loading}
                   title="Remove Post"
                   onPress={removePost}
                   decorator={
@@ -78,6 +86,7 @@ export default function PostMenu() {
               ) : (
                 <>
                   <Button
+                    loading={loading}
                     title={`Send Message to ${selectedPost?.profiles.full_name}`}
                     onPress={messageUser}
                     decorator={
@@ -85,6 +94,7 @@ export default function PostMenu() {
                     }
                   />
                   <Button
+                    loading={loading}
                     title={`View ${selectedPost?.profiles.full_name}'s Profile`}
                     onPress={viewUserProfile}
                     decorator={
@@ -94,6 +104,7 @@ export default function PostMenu() {
                 </>
               )}
               <Button
+                loading={loading}
                 title="Close"
                 onPress={close}
                 variant="outlined"
