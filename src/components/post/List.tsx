@@ -50,11 +50,7 @@ export default function PostList() {
               .eq('id', payload.new.id);
             if (error) alert(error.message);
             setPosts((prevPosts) => {
-              if (prevPosts.some((post) => post.id === payload.new.id)) {
-                return prevPosts;
-              } else {
-                return [data![0] as any, ...prevPosts];
-              }
+              return [data![0] as any, ...prevPosts];
             });
           } else {
             setPosts((prevPosts) => {
