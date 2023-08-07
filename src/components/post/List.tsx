@@ -39,7 +39,8 @@ export default function PostList() {
       else setPosts(data as any);
       if (loading) setLoading(false);
     };
-    const intervalId = setInterval(() => fetchPosts(), 5000);
+    fetchPosts();
+    // const intervalId = setInterval(() => fetchPosts(), 5000);
 
     const postListener = supabase
       .channel('public:posts')
@@ -77,7 +78,7 @@ export default function PostList() {
       .subscribe();
 
     return () => {
-      clearInterval(intervalId);
+      // clearInterval(intervalId);
       supabase.removeChannel(postListener);
     };
   }, []);

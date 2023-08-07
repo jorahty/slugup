@@ -46,6 +46,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
   },
   textInput: {
+    minWidth: 200,
     borderWidth: 2,
     padding: 15,
     borderRadius: 15,
