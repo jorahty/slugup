@@ -5,7 +5,7 @@ import { User, useViewModel } from '../../model/ViewModel';
 import { supabase } from '../../lib/supabase';
 
 export default function Chats() {
-  const { selectedUser } = useViewModel();
+  const { user } = useViewModel();
   const [chats, setChats] = useState<User[]>([]);
 
   useEffect(() => {
