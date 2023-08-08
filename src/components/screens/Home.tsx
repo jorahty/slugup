@@ -1,12 +1,12 @@
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 
 import { useViewModel } from '../../model/ViewModel';
 import PostList from '../post/List';
 import PostInput from '../post/Input';
 import PostMenu from '../post/Menu';
-import { colors } from '../../theme/theme';
 
 export default function Home() {
   return (
@@ -46,12 +46,14 @@ export const HomeHeaderRight = () => {
       ]}>
       <TouchableOpacity
         onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           navigate('Chats');
         }}>
         <Entypo name="chat" size={24} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           setSelectedUser(user);
           navigate('Profile');
         }}>
