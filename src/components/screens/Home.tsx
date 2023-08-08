@@ -1,4 +1,4 @@
-import { Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 
@@ -33,8 +33,10 @@ export const HomeHeaderLeft = () => {
   );
 };
 
+const Avatar = require('../../../assets/avatar.png');
+
 export const HomeHeaderRight = () => {
-  const { setSelectedUser, session } = useViewModel();
+  const { setSelectedUser, user } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View
@@ -50,14 +52,13 @@ export const HomeHeaderRight = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          setSelectedUser({
-            id: session.user.id,
-            full_name: 'Immortan Joe',
-            avatar_url: null,
-          });
+          setSelectedUser(user);
           navigate('Profile');
         }}>
-        <Ionicons name="person" size={24} color={colors.blue} />
+        <Image
+          source={user?.avatar_url ? { uri: user.avatar_url } : Avatar}
+          style={{ width: 24, height: 24, borderRadius: 50 }}
+        />
       </TouchableOpacity>
     </View>
   );
