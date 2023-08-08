@@ -48,7 +48,7 @@ export const HomeHeaderRight = () => {
         onPress={() => {
           navigate('Chats');
         }}>
-        <Entypo name="chat" size={24} color={colors.blue} />
+        <Entypo name="chat" size={24} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
