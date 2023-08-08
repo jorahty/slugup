@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 
-import { User } from '../../model/ViewModel';
+import { User, useViewModel } from '../../model/ViewModel';
 import { supabase } from '../../lib/supabase';
 
 export default function Chats() {
+  const { selectedUser } = useViewModel();
   const [chats, setChats] = useState<User[]>([]);
 
   useEffect(() => {
