@@ -46,13 +46,17 @@ export default function NavStack() {
           name="Home"
           component={Home}
           options={{
-            headerTitleAlign: 'center',
+            headerTitle: () => <></>,
             headerLeft: HomeHeaderLeft,
             headerRight: HomeHeaderRight,
           }}
         />
         <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="Chats" component={Chats} />
+        <Stack.Screen
+          name="Chats"
+          component={Chats}
+          options={{ title: 'Messages' }}
+        />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>

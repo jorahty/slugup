@@ -1,12 +1,12 @@
-import { Platform, TouchableOpacity, View } from 'react-native';
+import { Platform, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { MaterialIcons, Octicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 
-import { signOut } from '../../repo/auth';
 import { useViewModel } from '../../model/ViewModel';
 import PostList from '../post/List';
 import PostInput from '../post/Input';
 import PostMenu from '../post/Menu';
+import { colors } from '../../theme/theme';
 
 export default function Home() {
   return (
@@ -20,11 +20,16 @@ export default function Home() {
 
 export const HomeHeaderLeft = () => {
   return (
-    <TouchableOpacity
-      onPress={signOut}
-      style={Platform.OS === 'web' && { paddingLeft: 20 }}>
-      <MaterialIcons name="logout" size={24} />
-    </TouchableOpacity>
+    <Text
+      style={[
+        {
+          fontWeight: '800',
+          fontStyle: 'italic',
+        },
+        Platform.OS === 'web' && { paddingLeft: 20 },
+      ]}>
+      Slugup
+    </Text>
   );
 };
 
@@ -41,7 +46,7 @@ export const HomeHeaderRight = () => {
         onPress={() => {
           navigate('Chats');
         }}>
-        <MaterialIcons name="chat-bubble-outline" size={24} />
+        <Entypo name="chat" size={24} color={colors.blue} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -52,7 +57,7 @@ export const HomeHeaderRight = () => {
           });
           navigate('Profile');
         }}>
-        <Octicons name="person" size={24} />
+        <Ionicons name="person" size={24} color={colors.blue} />
       </TouchableOpacity>
     </View>
   );
