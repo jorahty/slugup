@@ -46,14 +46,16 @@ export const HomeHeaderRight = () => {
       ]}>
       <TouchableOpacity
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          if (Platform.OS !== 'web')
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           navigate('Chats');
         }}>
         <Entypo name="chat" size={24} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          if (Platform.OS !== 'web')
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           setSelectedUser(user);
           navigate('Profile');
         }}>
