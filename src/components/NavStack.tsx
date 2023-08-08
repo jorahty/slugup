@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { supabase } from '../lib/supabase';
 import { useViewModel } from '../model/ViewModel';
 import Loading from './common/Loading';
 import Auth from './screens/Auth';
@@ -30,18 +28,27 @@ export default function NavStack() {
           name="Home"
           component={Home}
           options={{
+            title: 'Posts',
             headerTitle: () => <></>,
             headerLeft: HomeHeaderLeft,
             headerRight: HomeHeaderRight,
           }}
         />
-        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen
+          name="Chat"
+          component={Chat}
+          options={{ headerTitle: () => <></> }}
+        />
         <Stack.Screen
           name="Chats"
           component={Chats}
           options={{ title: 'Messages' }}
         />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerTitle: () => <></> }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

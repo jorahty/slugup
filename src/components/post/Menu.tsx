@@ -1,4 +1,5 @@
-import { Modal, Pressable, SafeAreaView, View } from 'react-native';
+import { Modal, Pressable, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
@@ -41,6 +42,8 @@ export default function PostMenu() {
     close();
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
     <Modal visible={selectedPost !== null} transparent>
       <Pressable
@@ -51,17 +54,18 @@ export default function PostMenu() {
         }}>
         <View
           style={{
-            backgroundColor: '#00000077',
+            backgroundColor: 'transparent',
             flex: 1,
             justifyContent: 'flex-end',
             width: '100%',
             maxWidth: 900,
           }}>
-          <SafeAreaView
+          <View
             style={{
               backgroundColor: colors.white,
               borderTopWidth: 2,
               borderColor: colors.grey300,
+              paddingBottom: insets.bottom,
             }}>
             <View style={{ padding: 20, gap: 20 }}>
               {session?.user.id === selectedPost?.profiles.id ? (
@@ -107,7 +111,7 @@ export default function PostMenu() {
                 }
               />
             </View>
-          </SafeAreaView>
+          </View>
         </View>
       </Pressable>
     </Modal>
