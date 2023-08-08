@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 
-import { User, useViewModel } from '../../model/ViewModel';
+import { User } from '../../model/ViewModel';
 import { supabase } from '../../lib/supabase';
 
 export default function Chats() {
-  const { user } = useViewModel();
   const [chats, setChats] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchChats = async () => {
-      // fetch chats with `user`
-      // call `setChats`
+      const { data, error } = await supabase.rpc('get_chats');
+      if (error) console.log(error.message);
+      else setChats(data);
     };
     fetchChats();
   });
