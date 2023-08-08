@@ -76,7 +76,7 @@ export default function ProfileScreen() {
         </View>
         {profile.id === user.id ? (
           <Button
-            onPress={() => navigate('Edit Profile', { profile })}
+            onPress={() => navigate('Edit Profile', { profile, setProfile })}
             title="Edit Profile"
             decorator={<FontAwesome5 name="edit" style={styles.buttonIcon} />}
           />

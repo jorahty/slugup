@@ -84,4 +84,8 @@ export const styles = StyleSheet.create({
     color: colors.darkBlue,
     fontWeight: '600',
   },
+  formInput: {
+    backgroundColor: 'transparent',
+    padding: 10,
+  },
 });
