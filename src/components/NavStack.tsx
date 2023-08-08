@@ -15,29 +15,13 @@ import Profile from './screens/Profile';
 const Stack = createNativeStackNavigator();
 
 export default function NavStack() {
-  const { session, loadingSession } = useViewModel();
-  const [hasName, setHasName] = useState(true);
-
-  useEffect(() => {
-    if (session?.user) {
-      supabase
-        .from('profiles')
-        .select('full_name')
-        .eq('id', session.user.id)
-        .then(({ data }) => {
-          if (data![0].full_name === null) {
-            setHasName(false);
-          }
-        });
-    }
-  }, [session]);
+  const { session, loadingSession, user } = useViewModel();
 
   if (loadingSession) return <Loading />;
 
   if (!session) return <Auth />;
 
-  if (!hasName)
-    return <NameForm id={session.user.id} setHasName={setHasName} />;
+  if (user && !user.full_name) return <NameForm />;
 
   return (
     <NavigationContainer>

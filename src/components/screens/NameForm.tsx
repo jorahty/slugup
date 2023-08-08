@@ -8,15 +8,12 @@ import {
 } from 'react-native';
 
 import { supabase } from '../../lib/supabase';
+import { useViewModel } from '../../model/ViewModel';
 import { colors, styles } from '../../theme/theme';
 import Button from '../common/Button';
 
-interface Props {
-  id: string;
-  setHasName: (hasName: boolean) => void;
-}
-
-export default function NameForm({ id, setHasName }: Props) {
+export default function NameForm() {
+  const { user, setUser } = useViewModel();
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -25,11 +22,11 @@ export default function NameForm({ id, setHasName }: Props) {
     await supabase
       .from('profiles')
       .update([{ full_name: name }])
-      .eq('id', id);
+      .eq('id', user.id);
     Keyboard.dismiss();
     setName('');
     setLoading(false);
-    setHasName(true);
+    setUser({ ...user, full_name: name });
   }
 
   return (
