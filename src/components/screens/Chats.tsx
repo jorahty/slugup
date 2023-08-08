@@ -14,7 +14,7 @@ export default function Chats() {
       else setChats(data);
     };
     fetchChats();
-  });
+  }, []);
 
   if (chats.length === 0)
     return (
