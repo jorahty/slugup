@@ -15,7 +15,7 @@ export const useViewModel = () => useContext(ViewModelContext);
 
 export default function ViewModel({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
-  const [loadingSession, setLoadingSession] = useState(false);
+  const [loadingSession, setLoadingSession] = useState(true);
   const [selectedPost, setSelectedPost] = useState<null | Post>(null);
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
 
