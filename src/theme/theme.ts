@@ -9,6 +9,7 @@ export const colors = {
   grey400: '#aaa',
   grey500: '#777',
   danger: '#e45',
+  darkBlue: '#07f',
 };
 
 export const styles = StyleSheet.create({
@@ -74,5 +75,13 @@ export const styles = StyleSheet.create({
   },
   messageSentText: {
     color: colors.white,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  link: {
+    color: colors.darkBlue,
+    fontWeight: '600',
   },
 });
