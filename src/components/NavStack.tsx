@@ -8,7 +8,7 @@ import NameForm from './screens/NameForm';
 import Home, { HomeHeaderLeft, HomeHeaderRight } from './screens/Home';
 import Chat from './screens/Chat';
 import Chats from './screens/Chats';
-import Profile from './screens/Profile';
+import ProfileScreen from './screens/Profile';
 import EditProfile from './screens/EditProfile';
 
 const Stack = createNativeStackNavigator();
@@ -47,7 +47,7 @@ export default function NavStack() {
         />
         <Stack.Screen
           name="Profile"
-          component={Profile}
+          component={ProfileScreen}
           options={{ headerTitle: () => <></> }}
         />
         <Stack.Screen name="Edit Profile" component={EditProfile} />

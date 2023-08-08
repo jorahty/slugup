@@ -3,24 +3,15 @@ import { useNavigation } from '@react-navigation/native';
 import { Image, Linking, SafeAreaView, Text, View } from 'react-native';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 
-import { useViewModel } from '../../model/ViewModel';
+import { Profile, useViewModel } from '../../model/ViewModel';
 import { supabase } from '../../lib/supabase';
 import { styles } from '../../theme/theme';
 import Loading from '../common/Loading';
 import Button from '../common/Button';
 
-interface Profile {
-  id: string;
-  full_name: string;
-  avatar_url: string;
-  location: string;
-  website: string;
-  bio: string;
-}
-
 const Avatar = require('../../../assets/avatar.png');
 
-export default function Profile() {
+export default function ProfileScreen() {
   const { selectedUser, user } = useViewModel();
   const { navigate } = useNavigation<any>();
   const [profile, setProfile] = useState<null | Profile>(null);
@@ -85,7 +76,7 @@ export default function Profile() {
         </View>
         {profile.id === user.id ? (
           <Button
-            onPress={() => navigate('Edit Profile')}
+            onPress={() => navigate('Edit Profile', { profile })}
             title="Edit Profile"
             decorator={<FontAwesome5 name="edit" style={styles.buttonIcon} />}
           />

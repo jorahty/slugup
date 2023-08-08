@@ -81,3 +81,12 @@ export interface Message {
   content: string;
   date: string;
 }
+
+export interface Profile {
+  id: string;
+  full_name: string;
+  avatar_url: string;
+  location: string;
+  website: string;
+  bio: string;
+}
