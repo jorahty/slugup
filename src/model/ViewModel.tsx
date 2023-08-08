@@ -37,8 +37,9 @@ export default function ViewModel({ children }: { children: ReactNode }) {
         .from('profiles')
         .select('id, full_name, avatar_url')
         .eq('id', session.user.id)
+        .single()
         .then(({ data }) => {
-          setUser(data![0]);
+          setUser(data);
         });
     }
   }, [session]);

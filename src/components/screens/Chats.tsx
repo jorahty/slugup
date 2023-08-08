@@ -10,11 +10,8 @@ export default function Chats() {
 
   useEffect(() => {
     const fetchChats = async () => {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id, full_name, avatar_url');
-      if (error) alert(error.message);
-      else setChats(data);
+      // fetch chats with `user`
+      // call `setChats`
     };
     fetchChats();
   });

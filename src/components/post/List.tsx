@@ -47,10 +47,11 @@ export default function PostList() {
                   profiles ( id, full_name, avatar_url )
                 `
               )
-              .eq('id', payload.new.id);
+              .eq('id', payload.new.id)
+              .single();
             if (error) alert(error.message);
             setPosts((prevPosts) => {
-              return [data![0] as any, ...prevPosts];
+              return [data as any, ...prevPosts];
             });
           } else {
             setPosts((prevPosts) => {
