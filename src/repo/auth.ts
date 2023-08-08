@@ -56,6 +56,9 @@ export async function signUpWithEmail({ email, password }: Credentials) {
   const { error } = await supabase.auth.signUp({
     email: email,
     password: password,
+    options: {
+      emailRedirectTo: 'https://confirmed.slugup.com',
+    },
   });
 
   if (error) {
