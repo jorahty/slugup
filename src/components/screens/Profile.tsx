@@ -20,11 +20,11 @@ export default function ProfileScreen() {
     const getProfile = async () => {
       let { data, error } = await supabase
         .from('profiles')
-        .select(`location, website, bio`)
+        .select()
         .eq('id', selectedUser.id)
         .single();
       if (error) alert(error.message);
-      else setProfile({ ...selectedUser, ...data });
+      else setProfile(data);
     };
     getProfile();
   }, []);
