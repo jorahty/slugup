@@ -46,7 +46,7 @@ export default function ProfileScreen() {
           <View style={{ flexDirection: 'row', gap: 20 }}>
             <Image
               source={profile.avatar_url ? { uri: profile.avatar_url } : Avatar}
-              style={{ width: 160, height: 160, borderRadius: 10 }}
+              style={{ width: 110, height: 110, borderRadius: 10 }}
             />
             <View style={{ justifyContent: 'space-around' }}>
               <Text style={styles.title}>{profile.full_name}</Text>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   TextInput,
   TouchableOpacity,
   View,
@@ -49,86 +50,80 @@ export default function EditProfile({
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        style={{
+      <ScrollView
+        keyboardDismissMode="on-drag"
+        contentContainerStyle={{
           flex: 1,
           padding: 20,
-          gap: 20,
-          justifyContent: 'space-between',
+          gap: 15,
         }}>
-        <View style={{ gap: 20 }}>
-          <View style={{ flexDirection: 'row', gap: 20 }}>
-            <TouchableOpacity onPress={() => console.log('TODO')}>
-              <Image
-                source={avatarUrl ? { uri: avatarUrl } : Avatar}
-                style={{ width: 160, height: 160, borderRadius: 10 }}
-              />
-            </TouchableOpacity>
-            <View style={{ justifyContent: 'space-around', gap: 10 }}>
-              <TextInput
-                style={[styles.textInput, styles.formInput]}
-                placeholder="Name"
-                value={fullName}
-                onChangeText={setFullName}
-              />
-              <View
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                <Ionicons name="location-outline" size={24} color="black" />
-                <TextInput
-                  style={[styles.textInput, styles.formInput]}
-                  placeholder="Location"
-                  value={location}
-                  onChangeText={setLocation}
-                />
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 10,
-                }}>
-                <Ionicons name="link-outline" size={24} color="black" />
-                <TextInput
-                  style={[styles.textInput, styles.formInput]}
-                  placeholder="Website"
-                  value={website}
-                  onChangeText={setWebsite}
-                />
-              </View>
-            </View>
-          </View>
+        <View style={{ alignItems: 'center' }}>
+          <TouchableOpacity disabled>
+            <Image
+              source={avatarUrl ? { uri: avatarUrl } : Avatar}
+              style={{ width: 110, height: 110, borderRadius: 10 }}
+            />
+          </TouchableOpacity>
+        </View>
+        <TextInput
+          style={[styles.textInput, styles.formInput]}
+          placeholder="Name"
+          value={fullName}
+          onChangeText={setFullName}
+        />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 5,
+          }}>
+          <Ionicons name="location-outline" size={24} color="black" />
           <TextInput
-            style={[styles.textInput, styles.formInput, { minHeight: 100 }]}
-            placeholder="Bio"
-            value={bio}
-            onChangeText={setBio}
-            multiline
+            style={[styles.textInput, styles.formInput, { flex: 1 }]}
+            placeholder="Location"
+            value={location}
+            onChangeText={setLocation}
           />
         </View>
-        <View style={{ flexDirection: 'row', gap: 20 }}>
-          <View style={{ flex: 1 }}>
-            <Button
-              loading={loading}
-              title="Cancel"
-              onPress={() => navigate('Profile')}
-              variant="outlined"
-              decorator={
-                <FontAwesome
-                  name="close"
-                  style={[styles.buttonIcon, styles.buttonOutlinedText]}
-                />
-              }
-            />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Button
-              loading={loading}
-              title="Save Changes"
-              onPress={updateProfile}
-              decorator={<FontAwesome name="check" style={styles.buttonIcon} />}
-              disabled={!fullName || !location}
-            />
-          </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <Ionicons name="link-outline" size={24} color="black" />
+          <TextInput
+            style={[styles.textInput, styles.formInput, { flex: 1 }]}
+            placeholder="Website"
+            value={website}
+            onChangeText={setWebsite}
+          />
+        </View>
+        <TextInput
+          style={[styles.textInput, styles.formInput]}
+          placeholder="Bio"
+          value={bio}
+          onChangeText={setBio}
+        />
+      </ScrollView>
+      <View style={{ flexDirection: 'row', gap: 20, padding: 20 }}>
+        <View style={{ flex: 1 }}>
+          <Button
+            loading={loading}
+            title="Cancel"
+            onPress={() => navigate('Profile')}
+            variant="outlined"
+            decorator={
+              <FontAwesome
+                name="close"
+                style={[styles.buttonIcon, styles.buttonOutlinedText]}
+              />
+            }
+          />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Button
+            loading={loading}
+            title="Save Changes"
+            onPress={updateProfile}
+            decorator={<FontAwesome name="check" style={styles.buttonIcon} />}
+            disabled={!fullName || !location}
+          />
         </View>
       </View>
     </SafeAreaView>
