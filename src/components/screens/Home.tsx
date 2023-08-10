@@ -1,4 +1,11 @@
-import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  Linking,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
@@ -23,9 +30,12 @@ const Logo = require('../../../assets/header-logo.png');
 
 export const HomeHeaderLeft = () => {
   return (
-    <View style={Platform.OS === 'web' && { paddingLeft: 20 }}>
+    <TouchableOpacity
+      onPress={() => Linking.openURL('https://slugup.com')}
+      disabled={Platform.OS !== 'web'}
+      style={Platform.OS === 'web' && { paddingLeft: 20 }}>
       <Image source={Logo} style={{ width: 1451 / 12, height: 351 / 12 }} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
