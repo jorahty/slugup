@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { Image, Linking, SafeAreaView, Text, View } from 'react-native';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 
@@ -16,18 +16,20 @@ export default function ProfileScreen() {
   const { navigate } = useNavigation<any>();
   const [profile, setProfile] = useState<null | Profile>(null);
 
-  useEffect(() => {
-    const getProfile = async () => {
-      let { data, error } = await supabase
-        .from('profiles')
-        .select()
-        .eq('id', selectedUser.id)
-        .single();
-      if (error) alert(error.message);
-      else setProfile(data);
-    };
-    getProfile();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const getProfile = async () => {
+        let { data, error } = await supabase
+          .from('profiles')
+          .select()
+          .eq('id', selectedUser.id)
+          .single();
+        if (error) alert(error.message);
+        else setProfile(data);
+      };
+      getProfile();
+    }, [])
+  );
 
   if (!profile) return <Loading />;
 
@@ -76,7 +78,7 @@ export default function ProfileScreen() {
         </View>
         {profile.id === user.id ? (
           <Button
-            onPress={() => navigate('Edit Profile', { profile, setProfile })}
+            onPress={() => navigate('Edit Profile', { profile })}
             title="Edit Profile"
             decorator={<FontAwesome5 name="edit" style={styles.buttonIcon} />}
           />

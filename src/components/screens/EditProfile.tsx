@@ -17,7 +17,7 @@ const Avatar = require('../../../assets/avatar.png');
 
 export default function EditProfile({
   route: {
-    params: { profile, setProfile },
+    params: { profile },
   },
 }: any) {
   const { navigate } = useNavigation<any>();
@@ -42,11 +42,9 @@ export default function EditProfile({
 
     const { error } = await supabase.from('profiles').upsert(update);
 
-    if (error) alert(error.message);
-    else setProfile(update);
-
     setLoading(false);
-    navigate('Profile');
+    if (error) alert(error.message);
+    else navigate('Profile');
   }
 
   return (
