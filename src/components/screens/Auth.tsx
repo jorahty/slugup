@@ -4,6 +4,7 @@ import {
   ScrollView,
   TextInput,
   Image,
+  View,
 } from 'react-native';
 
 import { colors, styles } from '../../theme/theme';
@@ -11,6 +12,7 @@ import Button from '../common/Button';
 import Divider from '../common/Divider';
 import * as AuthRepo from '../../repo/auth';
 
+const Logo = require('../../../assets/logo.png');
 const GoogleLogo = require('../../../assets/google-logo.png');
 const AppleLogo = require('../../../assets/apple-logo.png');
 
@@ -54,6 +56,9 @@ export default function Auth() {
       <KeyboardAvoidingView
         behavior="padding"
         style={{ width: '100%', maxWidth: 250, gap: 15 }}>
+        <View style={{ alignItems: 'center' }}>
+          <Image source={Logo} style={{ width: 628 / 4, height: 548 / 4 }} />
+        </View>
         <Button
           title="Continue with Google"
           onPress={signInWithGoogle}
