@@ -7,6 +7,7 @@ import { useViewModel } from '../../model/ViewModel';
 import PostList from '../post/List';
 import PostInput from '../post/Input';
 import PostMenu from '../post/Menu';
+import { colors } from '../../theme/theme';
 
 export default function Home() {
   return (
@@ -45,7 +46,7 @@ export const HomeHeaderRight = () => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           navigate('Chats');
         }}>
-        <Entypo name="chat" size={24} />
+        <Entypo name="chat" size={24} color={colors.primary} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {

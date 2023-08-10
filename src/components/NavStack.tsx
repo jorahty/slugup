@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { useViewModel } from '../model/ViewModel';
@@ -10,8 +10,17 @@ import Chat from './screens/Chat';
 import Chats from './screens/Chats';
 import ProfileScreen from './screens/Profile';
 import EditProfile from './screens/EditProfile';
+import { colors } from '../theme/theme';
 
 const Stack = createNativeStackNavigator();
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: colors.primary,
+  },
+};
 
 export default function NavStack() {
   const { session, loadingSession, user } = useViewModel();
@@ -23,7 +32,7 @@ export default function NavStack() {
   if (user && !user.full_name) return <NameForm />;
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"

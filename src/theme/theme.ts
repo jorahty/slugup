@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
-  blue: '#08f',
+  primary: '#7A65FF',
   white: '#fff',
   grey100: '#f5f5f5',
   grey200: '#ddd',
@@ -9,19 +9,19 @@ export const colors = {
   grey400: '#aaa',
   grey500: '#777',
   danger: '#e45',
-  darkBlue: '#07f',
+  link: '#654CFF',
 };
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.blue,
+    backgroundColor: colors.primary,
     borderRadius: 15,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
     borderWidth: 2,
-    borderColor: colors.blue,
+    borderColor: colors.primary,
     minHeight: 50,
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   messageSent: {
-    backgroundColor: colors.blue,
+    backgroundColor: colors.primary,
   },
   messageSentText: {
     color: colors.white,
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
   },
   link: {
-    color: colors.darkBlue,
+    color: colors.link,
     fontWeight: '600',
   },
   formInput: {
