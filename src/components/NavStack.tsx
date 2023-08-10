@@ -1,6 +1,7 @@
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { colors } from '../theme/theme';
 import { useViewModel } from '../model/ViewModel';
 import Loading from './common/Loading';
 import Auth from './screens/Auth';
@@ -10,8 +11,8 @@ import Chat from './screens/Chat';
 import Chats from './screens/Chats';
 import ProfileScreen, { ProfileHeaderRight } from './screens/Profile';
 import EditProfile from './screens/EditProfile';
-import { colors } from '../theme/theme';
 import Settings from './screens/Settings';
+import Deactivate from './screens/Deactivate';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +66,7 @@ export default function NavStack() {
         />
         <Stack.Screen name="Edit Profile" component={EditProfile} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Deactivate" component={Deactivate} />
       </Stack.Navigator>
     </NavigationContainer>
   );
