@@ -1,11 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { Image, Linking, SafeAreaView, Text, View } from 'react-native';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import {
+  Image,
+  Linking,
+  Platform,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 
 import { Profile, useViewModel } from '../../model/ViewModel';
 import { supabase } from '../../lib/supabase';
-import { styles } from '../../theme/theme';
+import { colors, styles } from '../../theme/theme';
 import Loading from '../common/Loading';
 import Button from '../common/Button';
 
@@ -95,3 +104,18 @@ export default function ProfileScreen() {
     </SafeAreaView>
   );
 }
+
+export const ProfileHeaderRight = () => {
+  const { navigate } = useNavigation<any>();
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'web' && { paddingRight: 20 }}
+      onPress={() => {
+        if (Platform.OS !== 'web')
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        navigate('Settings');
+      }}>
+      <FontAwesome name="gear" size={24} color={colors.primary} />
+    </TouchableOpacity>
+  );
+};

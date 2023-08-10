@@ -8,9 +8,10 @@ import NameForm from './screens/NameForm';
 import Home, { HomeHeaderLeft, HomeHeaderRight } from './screens/Home';
 import Chat from './screens/Chat';
 import Chats from './screens/Chats';
-import ProfileScreen from './screens/Profile';
+import ProfileScreen, { ProfileHeaderRight } from './screens/Profile';
 import EditProfile from './screens/EditProfile';
 import { colors } from '../theme/theme';
+import Settings from './screens/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,9 +58,13 @@ export default function NavStack() {
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}
-          options={{ headerTitle: () => <></> }}
+          options={{
+            headerTitle: () => <></>,
+            headerRight: ProfileHeaderRight,
+          }}
         />
         <Stack.Screen name="Edit Profile" component={EditProfile} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );
