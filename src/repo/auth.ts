@@ -57,7 +57,7 @@ export async function signUpWithEmail({ email, password }: Credentials) {
     email: email,
     password: password,
     options: {
-      emailRedirectTo: 'https://confirmed.slugup.com',
+      emailRedirectTo: 'https://slugup.com/confirmed',
     },
   });
 
